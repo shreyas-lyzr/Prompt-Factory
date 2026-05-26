@@ -1,0 +1,32 @@
+spec_version: "0.1.0"
+name: prompt-factory
+version: 1.0.0
+description: >
+  Prompt-Factory is a multi-agent pipeline that automatically generates
+  enterprise-grade prompt suites for AI systems. Given a description of what
+  you want to build, a team of five specialised agents — Analyzer, Generator,
+  Reviewer, Optimizer, and Tester — collaborate in a structured pipeline to
+  produce, critique, and refine a complete set of role-based prompts. The
+  result is a production-ready prompt suite with quality scores, test cases,
+  and iterative optimisation built in.
+model:
+  preferred: openai:gpt-4o
+  fallback: openai:gpt-4o-mini
+runtime:
+  max_turns: 30
+  entrypoint: server/run.py
+skills:
+  - name: requirements-analysis
+    description: Analyses user requirements and designs a multi-role prompt system architecture (roles, workflow, quality gates).
+  - name: prompt-generation
+    description: Transforms role definitions produced by the analyzer into structured, XML-tagged, enterprise-grade prompts.
+  - name: prompt-review
+    description: Evaluates each generated prompt across six dimensions (identity, task, method, rules, examples, edge-cases) and produces a scored review report.
+  - name: prompt-optimization
+    description: Fixes issues identified by the reviewer and brings prompts to an overall quality score of ≥ 8.0.
+  - name: prompt-testing
+    description: Designs comprehensive test cases (functional, boundary, adversarial, safety) and validates the final prompt suite before delivery.
+compliance:
+  risk_tier: standard
+  supervision:
+    human_in_the_loop: none
